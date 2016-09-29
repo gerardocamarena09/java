@@ -118,3 +118,160 @@ public class main {
 }
 ***
 https://users.dcc.uchile.cl/~lmateu/Java/Transparencias/.defclas/all.htm
+
+****************
+package prueba.principal;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+class principal { 
+	
+	
+	/*static void insertarDirecciones(String z){
+		
+	}
+	
+	static void realizarEntrega(){
+			
+		}
+
+	static void crearArchivos(){
+		
+	}*/
+	
+	
+	public static void main(String[] args) {
+		
+		int x = 0;
+		int y = 0;
+		String orientacion = "N";
+		
+		try {
+
+			BufferedReader br = new BufferedReader(new FileReader("C:\\in.txt"));
+					
+			String linea;
+			List<String> lista = new ArrayList<String>();
+			
+			
+			for(int i = 1; i <= 3; i++) {
+				
+				lista.add((linea = br.readLine()));
+				
+			}
+			
+			System.out.println("Lista de entregas -> " + lista);
+			
+			String[] entregas = {lista.get(0).toString(), lista.get(1).toString(), lista.get(2).toString()}; 
+			
+			
+			StringReader sr1 = new StringReader(entregas[0]);
+			
+			System.out.println("Entrega #1 \n");
+			for(int i = 1; i <= entregas[0].length(); i++) {
+			char c = (char) sr1.read();
+			
+			/* valida orientaciones */
+			
+			if(c == 'A' & orientacion == "N"){
+				y=y+1;
+				orientacion = "N";
+			}
+			
+			else if(c == 'A' & orientacion == "S"){
+				x=x+1;
+				orientacion = "S";
+			}
+			
+			else if(c == 'A' & orientacion == "E"){
+				y=y-1;
+				orientacion = "E";
+			}
+			
+			else if(c == 'A' & orientacion == "O"){
+				x=x-1;
+				orientacion = "O";
+			}
+			
+			/**********/
+			
+			else if(c == 'I' & orientacion == "N"){
+				orientacion = "O";
+			}
+			
+			else if(c == 'I' & orientacion == "S"){
+				orientacion = "E";
+			}
+			
+			else if(c == 'I' & orientacion == "E"){
+				orientacion = "N";
+			}
+			
+			else if(c == 'I' & orientacion == "O"){
+				orientacion = "S";
+			}
+			
+			/**********/
+			
+			else if(c == 'D' & orientacion == "N"){
+				orientacion = "E";
+			}
+			
+			else if(c == 'D' & orientacion == "S"){
+				orientacion = "O";
+			}
+			
+			else if(c == 'D' & orientacion == "E"){
+				orientacion = "S";
+			}
+			
+			else if(c == 'D' & orientacion == "O"){
+				orientacion = "N";
+			}
+			
+			
+			/* valida orientaciones */
+			
+			System.out.print(c + " ");
+			
+			}
+			
+			System.out.print("\n\n(" + x + ", " + y + ") Direccion " + orientacion);
+
+			
+			StringReader sr2 = new StringReader(entregas[1]);
+			
+			System.out.println("\n\nEntrega #2 \n");
+			for(int i = 1; i <= entregas[1].length(); i++) {
+			char c = (char) sr2.read();
+			System.out.print(c + " ");
+			
+			}
+			
+			StringReader sr3 = new StringReader(entregas[2]);
+			
+			System.out.println("\n\nEntrega #3 \n");
+			for(int i = 1; i <= entregas[2].length(); i++) {
+			char c = (char) sr3.read();
+			System.out.print(c + " ");
+			
+			}
+			
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
