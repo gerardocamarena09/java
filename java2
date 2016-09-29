@@ -274,4 +274,82 @@ class principal {
 	}
 
 }
+*****
+package DronPackage;
 
+import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+
+
+class Dron {
+
+
+	public static void main(String[] args) {
+
+       int x = 0 ;
+	   int y = 0;
+       String direccion = "Norte";
+	  
+    
+
+        try {
+
+            BufferedReader b = new BufferedReader(new FileReader("C:\\pedidos.txt"));
+            List<String>  mylist = new ArrayList<String>();
+            
+           
+
+            for (int i = 1; i <= 3; i++) {
+
+                mylist.add((b.readLine())); 
+
+            }
+
+            System.out.println("== Reporte de ordenes realizado ==");
+
+            String[] ordenes = { mylist.get(0).toString() };
+
+
+            StringReader s = new StringReader(ordenes[0]);
+
+            
+            for (int i = 1; i <= ordenes[0].length(); i++) {
+                char c = (char) s.read();
+
+                //Recorrido del Dron en relacion al Plano x,y
+
+                if ( c== 'A' & direccion == "Norte") {
+                    y = y + 1;
+                    direccion = "Norte";
+                        }
+                else if(c == 'A' & direccion== "Sur"){
+    				x= y - 1;
+    				direccion = "Sur";
+    			}
+    			
+    			else if(c == 'A' & direccion == "Este"){
+    				y= x - 1;
+    				direccion = "Este";
+    			}
+    			
+    			else if(c == 'A' & direccion == "Oeste"){
+    				x= x + 1;
+    				direccion= "Oeste";
+    			}
+            }
+
+            System.out.print("(" + x + ", " + y + ") direccion " + direccion);
+          
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}
