@@ -1,0 +1,62 @@
+class Tortuga {
+
+   static final int Este  = 0;
+   static final int Norte = 1;
+   static final int Oeste = 2;
+   static final int Sur   = 3;
+   int x = Papel.CentroX();
+   int y = Papel.CentroY();
+   int ori = Norte;
+
+/*
+   ---------------------------------------------------------------------
+   procedure Crear( T: in out TipoTortuga ) is
+      -- PRE: cierto
+      -- POST: "El resultado es una nueva tortuga, situada en el origen y
+      --        dirigida hacia la derecha"
+      -- POST/SOL: resultado = Tortuga(0, 0, Este)
+      -- COMPLEJIDAD: O(1)
+   begin
+      T := new TTortuga;
+      Poner(T, 0, 0, Norte);
+   end Crear;
+*/
+
+   /** Poner la tortuga en la posición y orientación indicadas */
+   public void Poner( int x, int y, int ori ) {
+      this.x = x;
+      this.y = y;
+      this.ori = ori;
+   }
+
+   /** Hacer avanzar un paso la tortuga, dejando un trazo sobre el papel */
+   public void Avanzar( Papel p ) {
+      switch (ori) {
+         case Norte :
+            p.MarcarVertical( x, y++ );
+            break;
+         case Sur :
+            p.MarcarVertical( x, --y );
+            break;
+         case Este :
+            p.MarcarHorizontal( x++, y );
+            break;
+         case Oeste :
+            p.MarcarHorizontal( --x, y );
+            break;
+         default :
+            break;
+      }
+   }
+
+   /** Girar la tortuga 90° a la derecha */
+   public void GirarDerecha() {
+      ori = (ori+3) % 4;
+   }
+
+   /** Girar la tortuga 90° a la izquierda */
+   public void GirarIzquierda() {
+      ori = ++ori % 4;
+   }
+
+}
